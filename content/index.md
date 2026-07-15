@@ -1,3 +1,7 @@
+---
+title: Welcome to ENGR4BBS
+---
+
 Howdy Aggies!
 
 This is the ENGR4BBs project, where engineering students can find study tips, class notes, and other tools to succeed with the Entry-to-a-major process and as an engineering student. This notebook is maintained by students for student at the College of Engineering, Texas A&M University.
