@@ -1,3 +1,15 @@
 @use "./base.scss";
+html{
+  font-size: 110%;
+}
 
+body {
+  font-weight: 400;   // Adjust weight (default is 400/normal)
+}
+h1, h2, h3, h4, h5, h6 {
+      font-weight: 400;   // Adjust weight (default is 400/normal)
+}
+h2.page-title a {
+  font-weight: 400;  // Override the link's weight to match the h2
+}
 // put your custom CSS here!
