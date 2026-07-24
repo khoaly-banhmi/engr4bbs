@@ -4,9 +4,9 @@ title: Welcome to ENGR4BBS
 
 Howdy Aggies!
 
-This is the ENGR4BBs project, where engineering students can find study tips, class notes, and other tools to succeed with the Entry-to-a-major process and as an engineering student. This notebook is maintained by students for student at the College of Engineering, Texas A&M University.
+This is the ENGR4BBs notebook, where engineering students can find study tips and tools to succeed with the Entry-to-a-major process and as an engineering student. This notebook is maintained by students for student at the College of Engineering, Texas A&M University.
 
-This notebook is useful for students starting engineering, ENGR 120, PHYS/ENRG 216 and 217. 
+This notebook is useful for students starting engineering, ENGR 102, PHYS/ENRG 216. 
 
 To get started, take a look at [[Motivation and Mindset for Engineering]]. To get comfortable with using this notebook, take a look at [[User Guide]].
 
