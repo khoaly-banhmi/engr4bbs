@@ -28,13 +28,13 @@ You will be collecting data through the Jetson system. For your computer to comm
 
 > [!todo] Connecting to Jetson
 > For both Windows and MacOS users, once you have a new terminal open:
-> 4. Make sure that your WIFI connection is turned off. You will need WIFI turned off while working with Jetson.
-> 5. Check that you have connected your machine and Jetson via the cable provided.
-> 6. In a new terminal, copy and paste:
+> 1. Make sure that your WIFI connection is turned off. You will need WIFI turned off while working with Jetson.
+> 2. Check that you have connected your machine and Jetson via the cable provided.
+> 3. In a new terminal, copy and paste:
 > ```bash
 > ssh ubuntu@192.168.10.2
 > ```
-> 7. The password is: ubuntu. The password will not show up when you type it, so keep typing. Once you are done, hit enter.
+> 4. The password is: ubuntu. The password will not show up when you type it, so keep typing. Once you are done, hit enter.
 > 
 > After you have been connect, MobaXterm will ask you for a password and a username to save the password for future use, and Mac will ask you to authorize your connection. Continue as instructed. 
 
@@ -44,7 +44,8 @@ What you are looking at in terminal or MobaXterm is the Command Lind Interface (
 
 To quickly copy the command, you can use the copy button on the top right corner.
 
-### Copying a file
-``` bash
-cp <file you want to copy> <where you want it to be>
-```
+| Action         | Command                                                    |
+| -------------- | ---------------------------------------------------------- |
+| Copying a file | ```cp <file you want to copy> <where you want it to be>``` |
+|                |                                                            |
+|                |                                                            |
