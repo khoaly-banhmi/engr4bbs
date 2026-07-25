@@ -96,7 +96,7 @@ Physical distractions are from your surrounding environment when you are studyin
 - Library Annex
 - MSC Flag Room
 - Student Computing Center (SCC)
-- The Commons FLC, if you live at one of the South campus dorms
+- The Commons LLC, if you live at one of the South campus dorms
 
 ### Counterintuitive note-taking 
 The decisions to take note or not is up to the learner and their learning style. However, we recommend taking notes for direct references or serve as prompts for further research. It is important that you are comfortable reading documentations, which are notes taken by some one else. 

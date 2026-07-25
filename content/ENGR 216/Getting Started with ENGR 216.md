@@ -44,7 +44,7 @@ To quickly copy the command, you can use the copy button on the top right corner
 | Copying a file    | `cp <file you want to copy> <where you want it to be>` |
 | Editing a file    | `nano <file name>`                                     |
 
-> [!example] Examples
+> [!example]- Examples
 > ```bash
 > cp examples/tracking/4_track_and_print_with_camera_input.py ~
 > ```
