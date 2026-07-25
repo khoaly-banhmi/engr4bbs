@@ -1,7 +1,7 @@
 
 In ENGR 216, you are learning about classic Newtonian physics in engineering lab. In this article, we will walk you through setting up your computer, connecting to Jetson, and some common commands you will need throughout the course.
 
-To work comfortably the engineering labs, please take a look at [[Command Line Basics]]
+To work comfortably the engineering labs, please take a look at [Command Lines Basics](https://hpcc.ucr.edu/manuals/linux_basics/cmdline_basics/).
 
 ## Setting up your computer and connecting to Jetson
 
@@ -38,11 +38,22 @@ What you are looking at in terminal or MobaXterm is the Command Lind Interface (
 To quickly copy the command, you can use the copy button on the top right corner of code blocks.
 
 
-| Action            | Command                                                |
-| ----------------- | ------------------------------------------------------ |
-| Connect to Jetson | `ssh ubuntu@192.168.10.2`                              |
-| Copying a file    | `cp <file you want to copy> <where you want it to be>` |
-| Editing a file    | `nano <file name>`                                     |
+| Action                  | Command                                                |
+| ----------------------- | ------------------------------------------------------ |
+| Connect to Jetson       | `ssh ubuntu@192.168.10.2`                              |
+| Copying a file          | `cp <file you want to copy> <where you want it to be>` |
+| Editing a file          | `nano <file name>`                                     |
+| Running Python script   | `python3 <name of script>`                             |
+| List items in directory | `ls` or `ls <directory name>`                          |
+| Print working directory | `pwd`                                                  |
+| Change directory        | `cd <directory name`                                   |
+| End a Python script     | ⌃ Ctrl + C                                             |
+
+| Shortcuts in nano | Action          |
+| ----------------- | --------------- |
+| ⌃ Ctrl + O        | Save the edits  |
+| ⌃ Ctrl + X        | Exit            |
+| ⌃ Ctrl + W        | Search the file |
 
 > [!example]- Examples
 > ```bash
@@ -56,13 +67,15 @@ To quickly copy the command, you can use the copy button on the top right corner
 > nano 4_track_and_print_with_camera_input.py
 > ```
 > 
-> Note that you do not see any of the leading directory. This is means you are editing the file that is in the same folder or directory that you are. 
+> Note that you do not see any of the leading directory. This is means you are editing the file that is in the same folder or directory that you are.
+> 
+> After editing the script, you can run it by doing 
+> ```bash
+>python3 4_track_and_print_with_camera_input.py
+> ```
+> 
+> And stop it by ⌃ Ctrl + C once you have enough data. 
 
-| Shortcuts in nano | Action          |
-| ----------------- | --------------- |
-| ⌃ Ctrl + O        | Save the edits  |
-| ⌃ Ctrl + X        | Exit            |
-| ⌃ Ctrl + W        | Search the file |
 
 ### Saving the result to your computer 
 
