@@ -1,3 +1,9 @@
+---
+title: Getting Started with ENGR 216
+draft:
+tags:
+  - engr216
+---
 
 In ENGR 216, you are learning about classic Newtonian physics in engineering lab. In this article, we will walk you through setting up your computer, connecting to Jetson, and some common commands you will need throughout the course.
 
@@ -102,6 +108,11 @@ An example of what you will usually see being used:
 ```bash
 scp ubuntu@192.168.10.2:example_4.csv ./Desktop
 ```
+
+
+> [!info]- Help! This is a lot of information.
+> ![[monkey.gif]]
+> Yes, we know, but you do not have to remember all of these in one sitting. Bookmark this page so you can refer to it during lab. After a couple of labs, all of these will become second nature.
 
 ## Up next
 
