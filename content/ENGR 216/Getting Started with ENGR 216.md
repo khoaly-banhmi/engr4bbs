@@ -1,10 +1,3 @@
----
-title: Getting Started with ENGR 216
-draft: fasle
-tags: 
-- engr216
-- getting-started
----
 
 In ENGR 216, you are learning about classic Newtonian physics in engineering lab. In this article, we will walk you through setting up your computer, connecting to Jetson, and some common commands you will need throughout the course.
 
@@ -38,14 +31,69 @@ You will be collecting data through the Jetson system. For your computer to comm
 > 
 > After you have been connect, MobaXterm will ask you for a password and a username to save the password for future use, and Mac will ask you to authorize your connection. Continue as instructed. 
 
-## Linux Commands Cheatseat
+## Linux Commands Cheatsheet 
 
-What you are looking at in terminal or MobaXterm is the Command Lind Interface (CLI) just like you have seen working with Python in ENGR 102. This time, you will learn to use the Linux commands to communicate with Jetson. Listed below are common commands that will show up time-to-time in ENGR 216 and 217 lab.
+What you are looking at in terminal or MobaXterm is the Command Lind Interface (CLI) just like you have seen working with Python in ENGR 102. This time, you will learn to use the Linux commands to communicate with Jetson. Listed below are the most common commands that will show up time-to-time in ENGR 216 and 217 lab.
 
-To quickly copy the command, you can use the copy button on the top right corner.
+To quickly copy the command, you can use the copy button on the top right corner of code blocks.
 
-| Action         | Command                                                    |
-| -------------- | ---------------------------------------------------------- |
-| Copying a file | ```cp <file you want to copy> <where you want it to be>``` |
-|                |                                                            |
-|                |                                                            |
+
+| Action            | Command                                                |
+| ----------------- | ------------------------------------------------------ |
+| Connect to Jetson | `ssh ubuntu@192.168.10.2`                              |
+| Copying a file    | `cp <file you want to copy> <where you want it to be>` |
+| Editing a file    | `nano <file name>`                                     |
+
+> [!example] Examples
+> ```bash
+> cp examples/tracking/4_track_and_print_with_camera_input.py ~
+> ```
+> This means in the examples folder, look for the tracking folder, then the file 4_track_and_print_with_camera_input.py. Copy the file then put this in this directory, hence the "~".
+> 
+> In future labs, you will need to do adjustments to the provided python script to calibrate the camera. Because the original files are protected for future use by other students, you will need to copy the file out of their directory to make edits.
+> 
+> ```bash
+> nano 4_track_and_print_with_camera_input.py
+> ```
+> 
+> Note that you do not see any of the leading directory. This is means you are editing the file that is in the same folder or directory that you are. 
+
+| Shortcuts in nano | Action          |
+| ----------------- | --------------- |
+| ⌃ Ctrl + O        | Save the edits  |
+| ⌃ Ctrl + X        | Exit            |
+| ⌃ Ctrl + W        | Search the file |
+
+### Saving the result to your computer 
+
+For Windows users, click the refresh circular button of the side panel, then scroll down to find the file you want. Saving it is as easy as right click > Download. It should take no more than a few seconds to save it to your computer.
+
+![[MobaXterm-demo.png]]
+
+For MacOS users, because you are working purely in a CLI, you need to save the file a bit differently. In a **new** terminal:
+
+``` bash
+scp ubuntu@192.168.10.2:<your file path> ./Desktop
+```
+
+Explanation:
+- **scp**: secure copy. It transfer a file from one remote machine to another
+- **ubuntu**: the username you use on the remote machine, in this case, the Jetson.
+- **@192.168.10.2**: the IP address of the remote machine
+- The colon ":" separate the machine address and the file location on it
+- The period "." means this directory
+- "./Desktop" means the Desktop folder of this computer. This copy the file directly to your desktop. 
+
+An example of what you will usually see being used:
+
+```bash
+scp ubuntu@192.168.10.2:example_4.csv ./Desktop
+```
+
+## Up next
+
+Now that you are comfortable with working with MobaXterm or the CLI, we are now good to introduce you to the first lab.
+
+
+> [!info] Your next stop
+> [[Lab 1 Error Analysis and Orientation]]
