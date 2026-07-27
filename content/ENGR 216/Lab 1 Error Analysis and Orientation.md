@@ -54,6 +54,8 @@ $$
 d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 $$
 
+![[distance-trackedpoint.svg]]
+
 - Everything stays in **pixel units** for this lab. That's intentional, don't convert to cm.
 - Skim your report template now, not the night before. 10% of the grade is just following it.
 
@@ -135,3 +137,12 @@ If your two results agree within their uncertainties, that's a strong sign your 
 - **Histograms without axis labels** — label the axis and include units
 - **Skipping the method description** — 20% of the grade is explaining _how_ you got length and width from pixel positions. Write it so a student who wasn't there could repeat it.
 - **Ignoring the report template** — it's the easiest 10% you'll ever earn or lose
+
+---
+
+## Up next
+
+Now that you understand the fundamentals of error in measurements and handling them in your calculations, your team will integrate those background into calculating the local gravitational acceleration.
+
+> [!info] Your next stop
+> [[Lab 2 Visual Odometry]]

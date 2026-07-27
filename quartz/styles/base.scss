@@ -560,6 +560,14 @@ img {
   content-visibility: auto;
 }
 
+// embedded diagrams (![[foo.svg]]) default to their native size, which is
+// often oversized for inline figures — cap them smaller and center them
+img[src$=".svg"] {
+  max-width: min(400px, 100%);
+  display: block;
+  margin: 1rem auto;
+}
+
 p > img + em {
   display: block;
   transform: translateY(-1rem);
