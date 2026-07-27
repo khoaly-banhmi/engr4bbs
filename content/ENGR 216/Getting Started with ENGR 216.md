@@ -112,6 +112,7 @@ scp ubuntu@192.168.10.2:example_4.csv ./Desktop
 
 > [!info]- Help! This is a lot of information.
 > ![[monkey.gif]]
+> 
 > Yes, we know, but you do not have to remember all of these in one sitting. Bookmark this page so you can refer to it during lab. After a couple of labs, all of these will become second nature.
 
 ## Up next

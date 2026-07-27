@@ -119,12 +119,12 @@ The manual asks for area calculated **two different ways**, and this trips peopl
 1. **Propagated area** — average your lengths, average your widths, multiply, and push the uncertainties through the propagation formula. Tests whether you can _predict_ the uncertainty of a derived quantity.
 2. **Statistical area** — compute an area for _every single reading_, then take the mean and standard error of that list of areas. Tests whether you can measure uncertainty _empirically_.
 
-If your two results agree within their uncertainties, that's a strong sign your analysis is sound, and comparing them makes an excellent discussion point in your report.
+If your two results agree within their uncertainties, that's a strong sign your analysis is sound — and comparing them makes an excellent discussion point in your report.
 
 ### Analysis checklist
 
 - Compute $\bar{L}$, $\bar{W}$, and their uncertainties from your data
-- Make **histograms** for length and width (Google Sheets or matplotlib both work and the manual shows how)
+- Make **histograms** for length and width (Google Sheets or matplotlib both work — the manual shows how)
 - Report results in a table: Width, Length, Area (propagated), Area (statistical), each with its uncertainty
 - **Units on everything**: px for lengths, px² for areas
 
@@ -135,5 +135,3 @@ If your two results agree within their uncertainties, that's a strong sign your 
 - **Histograms without axis labels** — label the axis and include units
 - **Skipping the method description** — 20% of the grade is explaining _how_ you got length and width from pixel positions. Write it so a student who wasn't there could repeat it.
 - **Ignoring the report template** — it's the easiest 10% you'll ever earn or lose
-
-> [!info] Spot an error or have a better tip? This page gets better every time a student improves it. See [[Contribute]].
