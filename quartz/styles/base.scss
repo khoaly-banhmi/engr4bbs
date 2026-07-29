@@ -317,15 +317,24 @@ a {
 input[type="checkbox"] {
   transform: translateY(2px);
   color: var(--secondary);
-  border: 1px solid var(--lightgray);
+  border: 1.5px solid var(--darkgray);
   border-radius: 3px;
   background-color: var(--light);
   position: relative;
+  z-index: 0;
   margin-inline-end: 0.2rem;
   margin-inline-start: -1.4rem;
   appearance: none;
   width: 16px;
   height: 16px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--secondary);
+  }
 
   &:checked {
     border-color: var(--secondary);
@@ -334,6 +343,7 @@ input[type="checkbox"] {
     &::after {
       content: "";
       position: absolute;
+      z-index: 1;
       left: 4px;
       top: 1px;
       width: 4px;
@@ -342,6 +352,9 @@ input[type="checkbox"] {
       border: solid var(--light);
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
+      filter:
+        drop-shadow(0.75px 0 0 rgba(0, 0, 0, 0.55)) drop-shadow(-0.75px 0 0 rgba(0, 0, 0, 0.55))
+        drop-shadow(0 0.75px 0 rgba(0, 0, 0, 0.55)) drop-shadow(0 -0.75px 0 rgba(0, 0, 0, 0.55));
     }
   }
 }
@@ -627,6 +640,16 @@ ol.overflow {
   display: initial;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+// katex's own stylesheet (loaded via CDN link, after index.css) sets
+// `font: normal 1.21em KaTeX_Main, ...` on .katex, which resets font-weight to
+// normal and drops rendered math out of bold text, headings, and callout
+// titles. Keep KaTeX's math font/size (needed for correct glyphs) but let
+// weight follow the surrounding context. The extra `html` bumps specificity
+// so this wins over katex.min.css despite loading first in the page.
+html .katex {
+  font-weight: inherit;
 }
 
 .external-embed.youtube,

@@ -5,7 +5,14 @@ tags:
   - engr216
 ---
 
-> [!warning] This page is a companion, not a replacement. Your official lab manual and Canvas rubric are the source of truth for deliverables and grading. Use this page to prepare faster, work smoother, and avoid the classic mistakes.
+> [!warning] Heads up! 
+> Your official lab manual and Canvas rubric are the source of truth for deliverables and grading. Use this page to prepare faster, work smoother, and avoid the classic mistakes.
+> 
+> Quick reminder before you write that lab report:
+> - This site is public. If you found it, so can plagiarism checkers.
+> - Screenshotting a LaTeX derivation or re-typing it word for word is still copying.
+> - The whole point of these notes is that you understand the steps. If you can re-derive it without looking, you're safe. If you can't, you're not ready to write it yet.
+> - "An Aggie does not lie, cheat or steal." Your report should sound like you.
 
 ## Overview
 

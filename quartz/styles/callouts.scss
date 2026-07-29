@@ -164,6 +164,15 @@
     margin: 0;
   }
 
+  // .katex has its own hardcoded color/fill (see base.scss) that otherwise
+  // overrides the inherited title color, so math renders dark instead of
+  // matching the callout's accent color. ".callout-title .katex" out-specifies
+  // that base rule to win regardless of stylesheet order.
+  & .katex {
+    color: var(--color);
+    fill: var(--color);
+  }
+
   .callout-icon,
   & .fold-callout-icon {
     width: var(--icon-size);
