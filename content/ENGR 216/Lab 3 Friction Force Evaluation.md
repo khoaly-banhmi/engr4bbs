@@ -29,7 +29,9 @@ Choose wood as your material for better results. You will run four full experime
 
 **Static friction from the slip angle.** Tilt the plane slowly. At the exact angle $\theta_s$ where the block first slips, gravity along the incline equals the maximum static friction:
 
-$$ mg\sin\theta_s = \mu_s , mg\cos\theta_s \quad\Rightarrow\quad \mu_s = \tan\theta_s $$
+$$ 
+mg\sin\theta_s = \mu_s , mg\cos\theta_s \quad\Rightarrow\quad \mu_s = \tan\theta_s 
+$$
 
 The mass cancels, so you never need to weigh the block.
 
@@ -38,7 +40,9 @@ The mass cancels, so you never need to weigh the block.
 
 **Kinetic friction from acceleration.** Once the block is sliding at a fixed angle $\theta$, Newton's second law along the incline gives $ma = mg\sin\theta - \mu_k mg\cos\theta$. Mass cancels again:
 
-$$ \mu_k = \tan\theta - \frac{a}{g\cos\theta} $$
+$$ 
+\mu_k = \tan\theta - \frac{a}{g\cos\theta} 
+$$
 
 Measure the sliding acceleration $a$ with the tracking camera, and you have $\mu_k$. For $g$, the accepted value is $9.81\ \text{m/s}^2$ (you measured this yourself in [[Lab 2 Visual Odometry]]).
 
@@ -136,18 +140,18 @@ Stop the recording with ⌃ Ctrl + C when your run is complete. The output now i
 
 ### Troubleshooting
 
-|Symptom|Likely cause|Fix|
-|---|---|---|
-|Cannot connect with Jetson|Cable unplugged / loose|Unplug then plug in again. If problem prevails, ask a PT to change the cable.|
-|Cannot connect with Jetson **(MacOS)**|Port not recognized|Change the to a different USB port and open a **new** terminal to connect.|
-|Camera not detected|Cable unplugged / loose|Look for the USB connection between the camera and the table. Disconnect then connect again.|
-|A sticker isn't tracked or flickering tracking|Duplicate color, glare, not enough ligting, or sticker out of frame|Swap to an unused color; reposition to reduce glare; check the camera's view; use an additional flashlight|
-|Script output distances look wrong|camera_distance not edited, or entered in the wrong unit|Open your copy of the script and set camera_distance in cm, measured at your station|
-|Block slips at wildly different angles|Raising too fast, table vibration, or dirty surfaces|Tilt slower and more smoothly; wipe both surfaces; reset the block to the same spot each trial|
-|Block sticks and slides in bursts during kinetic runs|Angle barely above the slip angle|Increase the tilt so the block slides smoothly down the whole plane|
-|Laggy video feed|Resource exhaustion|Restarting the camera by unplugging, or restarting Jetson. This is a slow process, ask a PT to move to an empty table.|
-|`Permission denied` when script writes output|You're running from the `examples` directory (write-protected)|Copy the script to your own folder first, run it there|
-|CSV is missing position columns|Sticker never detected during recording|Fix tracking, record again|
+| Symptom                                               | Likely cause                                                        | Fix                                                                                                                    |
+| ----------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Cannot connect with Jetson                            | Cable unplugged / loose                                             | Unplug then plug in again. If problem prevails, ask a PT to change the cable.                                          |
+| Cannot connect with Jetson **(MacOS)**                | Port not recognized                                                 | Change the to a different USB port and open a **new** terminal to connect.                                             |
+| Camera not detected                                   | Cable unplugged / loose                                             | Look for the USB connection between the camera and the table. Disconnect then connect again.                           |
+| A sticker isn't tracked or flickering tracking        | Duplicate color, glare, not enough ligting, or sticker out of frame | Swap to an unused color; reposition to reduce glare; check the camera's view; use an additional flashlight             |
+| Script output distances look wrong                    | camera_distance not edited, or entered in the wrong unit            | Open your copy of the script and set camera_distance in cm, measured at your station                                   |
+| Block slips at wildly different angles                | Raising too fast, table vibration, or dirty surfaces                | Tilt slower and more smoothly; wipe both surfaces; reset the block to the same spot each trial                         |
+| Block sticks and slides in bursts during kinetic runs | Angle barely above the slip angle                                   | Increase the tilt so the block slides smoothly down the whole plane                                                    |
+| Laggy video feed                                      | Resource exhaustion                                                 | Restarting the camera by unplugging, or restarting Jetson. This is a slow process, ask a PT to move to an empty table. |
+| `Permission denied` when script writes output         | You're running from the `examples` directory (write-protected)      | Copy the script to your own folder first, run it there                                                                 |
+| CSV is missing position columns                       | Sticker never detected during recording                             | Fix tracking, record again                                                                                             |
 
 ### Before you leave the lab
 
@@ -196,4 +200,5 @@ The classic friction model predicts that the coefficients do not depend on conta
 
 You now have the full experimental toolkit: uncertainty analysis, calibrated motion tracking, and quantitative agreement testing. The labs ahead put these to work on new physics.
 
-> [!info] Your next stop [[Lab 4 Collisions]]
+> [!info] Your next stop 
+> [[Lab 4 Collisions]]
