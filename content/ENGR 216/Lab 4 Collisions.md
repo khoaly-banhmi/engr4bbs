@@ -31,7 +31,9 @@ The twist is that you do not get to just claim the collision angle you aimed for
 
 **Momentum is a vector.** Each puck carries momentum $\vec{p} = m\vec{v}$, and the total is the vector sum of both pucks. Conservation applies to each component separately, which is exactly why the manual asks for separate x and y plots:
 
-$$ m_1 v_{1x} + m_2 v_{2x} \Big|_{\text{before}} = m_1 v_{1x} + m_2 v_{2x} \Big|_{\text{after}} $$
+$$ 
+m_1 v_{1x} + m_2 v_{2x} \Big|_{\text{before}} = m_1 v_{1x} + m_2 v_{2x} \Big|_{\text{after}} 
+$$
 
 and the same for the y components. Keep the signs: a puck moving in the negative x direction has negative $p_x$, and dropping that sign destroys the bookkeeping.
 
@@ -39,13 +41,17 @@ and the same for the y components. Keep the signs: a puck moving in the negative
 
 **Collision angle from data.** The angle between the two incoming velocity vectors comes from the dot product:
 
-$$ \cos\phi = \frac{\vec{v}_1 \cdot \vec{v}_2}{|\vec{v}_1||\vec{v}_2|} = \frac{v_{1x}v_{2x} + v_{1y}v_{2y}}{|\vec{v}_1||\vec{v}_2|} $$
+$$ 
+\cos\phi = \frac{\vec{v}_1 \cdot \vec{v}_2}{|\vec{v}_1||\vec{v}_2|} = \frac{v_{1x}v_{2x} + v_{1y}v_{2y}}{|\vec{v}_1||\vec{v}_2|} 
+$$
 
 Use each puck's velocity from the frames _before_ impact. A head-on collision gives $\phi$ near 180°, a right-angle collision near 90°.
 
 **Uncertainty for the ratio plots.** The before/after momentum ratio is a division, so its uncertainty follows the same quadrature rule from [[Lab 2 Visual Odometry]]:
 
-$$ \frac{\delta R}{R} = \sqrt{\left(\frac{\delta p_{\text{before}}}{p_{\text{before}}}\right)^2 + \left(\frac{\delta p_{\text{after}}}{p_{\text{after}}}\right)^2} $$
+$$ 
+\frac{\delta R}{R} = \sqrt{\left(\frac{\delta p_{\text{before}}}{p_{\text{before}}}\right)^2 + \left(\frac{\delta p_{\text{after}}}{p_{\text{after}}}\right)^2} 
+$$
 
 A ratio consistent with 1 within its error bar is what conservation looks like on a plot. The manual says you may ignore the uncertainty in the puck masses, so all uncertainty flows from your velocity measurements: average each velocity over its clean frames and use the standard error, exactly as in [[Lab 1 Error Analysis and Orientation]].
 
