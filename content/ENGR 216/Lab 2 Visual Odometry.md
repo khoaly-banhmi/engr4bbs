@@ -179,4 +179,4 @@ A good sanity check: the accepted value of $g$ is about $9.81\ \text{m/s}^2$. If
 You can now measure real-world motion in real-world units: position, velocity, and acceleration from nothing but a camera. You will use those knowledge to quantify the friction between a wooden and a metal surface, with varying contact areas and inclines. 
 
 > [!info] Your next stop
-> [[Lab 3 Friction Forces]]
+> [[Lab 3 Friction Force Evaluation]]
