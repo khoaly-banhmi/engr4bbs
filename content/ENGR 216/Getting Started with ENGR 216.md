@@ -119,6 +119,8 @@ scp ubuntu@192.168.10.2:example_4.csv ./Desktop
 
 Now that you are comfortable with working with MobaXterm or the CLI, we are now good to introduce you to the first lab.
 
+This is a test.
+
 
 > [!info] Your next stop
 > [[Lab 1 Error Analysis and Orientation]]
