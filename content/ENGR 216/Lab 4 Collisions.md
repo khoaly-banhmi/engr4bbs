@@ -21,7 +21,7 @@ tags:
 
 This lab tests two of the deepest bookkeeping rules in physics on real, imperfect hardware: conservation of momentum and conservation of kinetic energy. Your team will crash two pucks together on the air table at least 8 times, at collision angles spread from head-on (about 180°) to glancing, then check whether the totals before each collision match the totals after.
 
-The twist is that you do not get to just claim the collision angle you aimed for. Every angle must be calculated from your own tracking data, and every plot must carry uncertainties. This lab uses everything the course has built so far: calibrated tracking, velocity extraction, propagation of error, and honest judgment about agreement.
+For every trial, your collision angle must be calculated from your own tracking data, and every plot must carry uncertainties. This lab uses everything the course has built so far: calibrated tracking, velocity extraction, propagation of error, and honest judgment about agreement.
 
 ---
 
@@ -37,7 +37,7 @@ $$
 
 and the same for the y components. Keep the signs: a puck moving in the negative x direction has negative $p_x$, and dropping that sign destroys the bookkeeping.
 
-**Kinetic energy is a scalar.** Each puck contributes $KE = \frac{1}{2}mv^2$, where $v^2 = v_x^2 + v_y^2$. No components, no signs, just a total before and a total after. A collision is **elastic** if kinetic energy is conserved and **inelastic** if some is lost to sound, deformation, and friction during contact. Momentum can be conserved even when kinetic energy is not; that difference is the entire point of assignment 2.
+**Kinetic energy is a scalar.** Each puck contributes $KE = \frac{1}{2}mv^2$, where $v^2 = v_x^2 + v_y^2$.  A collision is **elastic** if kinetic energy is conserved and **inelastic** if some is lost to sound, deformation, and friction during contact. Momentum can be conserved even when kinetic energy is not.
 
 **Collision angle from data.** The angle between the two incoming velocity vectors comes from the dot product:
 
@@ -45,7 +45,7 @@ $$
 \cos\phi = \frac{\vec{v}_1 \cdot \vec{v}_2}{|\vec{v}_1||\vec{v}_2|} = \frac{v_{1x}v_{2x} + v_{1y}v_{2y}}{|\vec{v}_1||\vec{v}_2|} 
 $$
 
-Use each puck's velocity from the frames _before_ impact. A head-on collision gives $\phi$ near 180°, a right-angle collision near 90°.
+Use each puck's velocity from the frames _before_ impact.
 
 **Uncertainty for the ratio plots.** The before/after momentum ratio is a division, so its uncertainty follows the same quadrature rule from [[Lab 2 Visual Odometry]]:
 
@@ -53,16 +53,44 @@ $$
 \frac{\delta R}{R} = \sqrt{\left(\frac{\delta p_{\text{before}}}{p_{\text{before}}}\right)^2 + \left(\frac{\delta p_{\text{after}}}{p_{\text{after}}}\right)^2} 
 $$
 
-A ratio consistent with 1 within its error bar is what conservation looks like on a plot. The manual says you may ignore the uncertainty in the puck masses, so all uncertainty flows from your velocity measurements: average each velocity over its clean frames and use the standard error, exactly as in [[Lab 1 Error Analysis and Orientation]].
+A ratio consistent with 1 within its error bar is what conservation looks like on a plot. The manual says you may ignore the uncertainty in the puck masses, so all uncertainty flows from your velocity measurements.
 
-> [!info] Theory in practice 
-> Spreadsheets can do the angle calculation directly. With components in cells, the pattern is:
-> 
+>[!info]- Theory in practice: Building your $\theta$ formula
+> Say puck 1's velocity components sit in columns B and C, and puck 2's in D and E.
+>
+> **Step 1: the dot product.** The numerator of the angle formula is $v_{1x}v_{2x} + v_{1y}v_{2y}$, a multiply-and-add:
+>
 > ```
-> =DEGREES(ACOS((B2*D2 + C2*E2) / (SQRT(B2^2+C2^2) * SQRT(D2^2+E2^2))))
+> =B2*D2 + C2*E2
 > ```
-> 
-> where columns B, C hold puck 1's velocity components and D, E hold puck 2's. `ACOS` returns radians, so wrap it in `DEGREES` for a readable angle. 
+>
+> **Step 2: the two speeds.** The denominator needs each puck's speed, $|\vec{v}| = \sqrt{v_x^2 + v_y^2}$, so one column per puck:
+>
+> ```
+> =SQRT(B2^2 + C2^2)
+> ```
+>
+> ```
+> =SQRT(D2^2 + E2^2)
+> ```
+>
+> **Step 3: the cosine.** Divide the dot product by the product of the speeds, exactly as the formula reads. With the previous three steps in F, G, and H:
+>
+> ```
+> =F2/(G2*H2)
+> ```
+>
+> Sanity check this column before moving on: every value must land between -1 and 1, because it is a cosine. A value outside that range means a wrong cell reference somewhere upstream.
+>
+> **Step 4: undo the cosine.** `ACOS` recovers the angle, in radians, so wrap it in `DEGREES` for a readable number:
+>
+> ```
+> =DEGREES(ACOS(I2))
+> ```
+>
+> One practical trap: rounding can occasionally push a cosine to something like 1.0000001, which makes `ACOS` throw a `#NUM!` error even though nothing is truly wrong. If that bites you, clamp the value first with `MIN(1, MAX(-1, I2))`.
+>
+> The payoff of the column-by-column build is that every intermediate is visible: when an angle comes out absurd, you can see *which* step broke instead of staring at one opaque formula.
 ### Know before you walk in
 
 - The air table must be **level** this time. 
@@ -94,16 +122,14 @@ nano 6_track_motion_and_print.py
 python3 6_track_motion_and_print.py
 ```
 
-Stop each recording with ⌃ Ctrl + C after the collision fully plays out. Record one file per trial and name or log them immediately (trial number plus target angle), because eight unlabeled CSV files look identical two days later.
+Stop each recording with ⌃ Ctrl + C after the collision fully plays out. Record one file per trial, then rename and save them to your computer immediately.
 
 ### Procedure tips
 
-- **Level the table and confirm the air is on before trial 1.**  The table is not always perfectly leveled. It is acceptable that pucks may drift slowly to one side.
 - **Practice a few launches before recording.** Getting two hand-launched pucks to collide mid-table at a chosen angle takes a couple of attempts to calibrate your push.
 - **Keep the collision away from the walls.** A wall bounce just before or after the collision adds an outside force and wrecks the momentum comparison. Analyze only the stretch between wall contacts, and aim collisions for the middle of the table.
 - **Moderate speeds track better.** Very fast pucks blur and skip frames; very slow pucks let friction eat a visible share of the momentum. 
 - **Avoid spinning the pucks as you launch.** Spin stores energy the camera cannot see and shows up as mysterious kinetic energy loss.
-- **Log the target angle for every trial as you go.** The actual angle comes from data later, but the log is how you confirm your 8 trials cover the required ranges before you leave.
 - **Watch the camera feed for flickering.** Same as previous labs: if a sticker color drops in and out, the lighting is insufficient. Look for a PT.
 
 ### Troubleshooting
@@ -138,23 +164,16 @@ Stop each recording with ⌃ Ctrl + C after the collision fully plays out. Recor
 ### What the deliverables are really testing
 
 1. **The collision angle method (15%).** This tests whether you treat velocity as a vector. The dot product formula, applied to before-impact velocities, is the clean answer; describe which frames you averaged and why.
-2. **The four momentum plots (30%).** Before/after totals and their ratios, for x and y separately, all with error bars. These test the full chain from raw tracking to propagated uncertainty. The ratio plots are the punchline: conservation predicts every ratio sits at 1 within its error bar.
+2. **The four momentum plots (30%).** Before/after totals and their ratios, for x and y separately, all with error bars. These test the full chain from raw tracking to propagated uncertainty. 
 3. **The momentum discussion (10%).** The manual explicitly wants the real-world part: what weakens conservation in practice. Residual table tilt, air drag and leftover surface friction, wall interactions, puck spin, and tracking noise are all fair game; pick the ones your data actually shows.
-4. **The kinetic energy plot and elasticity verdict (25%).** Momentum can survive a collision that kinetic energy does not. If your after-collision energy runs consistently below the before value, your collisions are partially inelastic, and saying so with numbers is the correct conclusion. Perfectly elastic results on real pucks would be the suspicious outcome.
-
-### Analysis checklist
-
-- For each trial and each puck: average velocity components over clean frames before impact and after impact, with standard errors
-- Compute the actual collision angle for every trial from the before-impact velocities
-- Total $p_x$ and $p_y$ before and after each collision, plus total kinetic energy before and after
-- Build all five plots against collision angle, with error bars, in the style of the Canvas example file. You can also plug your numbers in directly to the example file.
+4. **The kinetic energy plot and elasticity verdict (25%).** Momentum can survive a collision that kinetic energy does not. If your after-collision energy runs consistently below the before value, your collisions are partially inelastic.
 
 > [!question]- Why won't my momentum ratio be exactly 1?
 > Everything in this callout is worth knowing but **not required** by the manual or the instruction slides; it is background for writing a sharper discussion.
 >
 > Momentum is only perfectly conserved when no outside forces touch the pucks, and the air table minimizes outside forces without eliminating them. Real data essentially always shows small deviations, so ratios like 0.95 or 1.05 are normal. Your job is not to get exactly 1, it is to explain the gap.
 >
-> Before blaming physics, rule out **analysis error** first: averaging through the impact frames, a wall bounce inside your analysis window, or a badly tracked stretch of frames all fake a momentum change that never happened. Fix the window, then look at what remains.
+> Before blaming physics, rule out **analysis error** first: averaging through the impact frames, a wall bounce inside your analysis window, or a badly tracked stretch of frames. Fix the window, then look at what remains.
 >
 > The remaining, genuine effects each leave a different fingerprint:
 >
@@ -164,6 +183,12 @@ Stop each recording with ⌃ Ctrl + C after the collision fully plays out. Recor
 >
 > A discussion that names the effect *and* points to its fingerprint in your own plots is exactly what deliverable 4 is asking for.
 
+### Analysis checklist
+
+- For each trial and each puck: average velocity components over clean frames before impact and after impact, with standard errors
+- Compute the actual collision angle for every trial from the before-impact velocities
+- Total $p_x$ and $p_y$ before and after each collision, plus total kinetic energy before and after
+- Build all five plots against collision angle, with error bars, in the style of the Canvas example file. You can also plug your numbers in directly to the example file.
 - Apply the overlap test (or the more detailed version) from [[Lab 3 Friction Forces Evaluation]] when judging whether ratios agree with 1 and whether energy was conserved
 
 ### Common mistakes that cost points
@@ -182,5 +207,6 @@ Stop each recording with ⌃ Ctrl + C after the collision fully plays out. Recor
 
 You have now audited nature's accounting on real hardware and seen which quantities survive a collision and which leak away. The remaining labs build on this full analysis pipeline.
 
-> [!info] Your next stop [[Lab 5 Rotational Motion]]
+> [!info] Your next stop 
+> [[Lab 5 Rotational Motion]]
 

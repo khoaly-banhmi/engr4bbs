@@ -21,7 +21,7 @@ tags:
 
 ## Overview
 
-The last lab of the semester, and it runs **online**: there is no lab station session this week. Your data arrives as files in the Canvas module, recorded with the same tracking camera you have used all semester, showing a mass bouncing on a spring. Your team's job is pure analysis: determine the spring constant $k$ for three different springs, with uncertainties.
+The last lab of the semester, and it runs **online.** Your data arrives as files in the Canvas module, recorded with the same tracking camera you have used all semester, showing a mass bouncing on a spring. Your team's job is pure analysis: determine the spring constant $k$ for three different springs, with uncertainties.
 
 Here is the puzzle the manual builds in on purpose: no meter stick was available, so all positions are in **pixels**, and there is no way to convert them to meters. It sounds fatal, and it is not. The spring constant hides in the _timing_ of the oscillation, not its size, so a full-credit answer in real S.I. units comes out of data that never leaves pixel units. Seeing why is the whole point of the lab.
 
@@ -68,30 +68,6 @@ $$
 $$
 
 The factor of 2 in front of the period term is the fingerprint of $T^2$. If the mass uncertainty is negligible, this collapses to $\delta k / k = 2,\delta T / T$.
-
-> [!info] Theory in practice 
-> 
-> The whole analysis fits in a spreadsheet. Scatter-plot the oscillating position column against the timestamp column, read the timestamps of a first clean peak and a peak $N$ cycles later, and then:
-> 
-> ```
-> =(B47-B12)/10
-> ```
-> 
-> gives the period from a 10-cycle stretch, with the two peak timestamps in B47 and B12. Repeat over a few different stretches for the spread, then:
-> 
-> ```
-> =4*PI()^2*0.550/A2^2
-> ```
-> 
-> turns a period (cell A2, in seconds) and a mass (here 0.550 kg) into the spring constant.
-
-> [!question]- Doesn't gravity change things? And what about the spring's own weight? 
-> 
-> Everything in this callout is worth knowing but **not required** by the manual or the instruction slides.
-> 
-> **Gravity:** the mass hangs vertically, so gravity is pulling on it the whole time, yet it appears nowhere in the working equation. That is because a constant force only shifts _where_ the mass oscillates, stretching the equilibrium down by $mg/k$, without changing _how fast_ it oscillates. The period of a vertical spring-mass system is identical to a horizontal one. This is also why the equilibrium offset in your data is harmless.
-> 
-> **The spring's own mass:** the formula treats the spring as massless, but a real spring carries some of itself along as it oscillates, effectively adding about a third of the spring's mass to $m$. With a heavy hanging mass this correction is buried in the noise, which is one quiet reason the recordings use substantial masses. If your three $k$ values came from very different hanging masses and drift slightly in a consistent direction, this is a classy effect to name in your discussion.
 
 ### Know before you walk in
 

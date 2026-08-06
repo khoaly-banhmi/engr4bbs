@@ -20,7 +20,7 @@ tags:
 
 ## Overview
 
-Everything you did with straight-line motion has a rotational twin, and this lab introduces the whole family at once: angle instead of position, angular velocity instead of velocity, moment of inertia instead of mass, and angular momentum instead of momentum.
+Everything you did with straight-line motion has a rotational twin.
 
 Your team has two assignments. First, spin the L shape, drop a 20 g mass onto it, and check whether angular momentum survives the drop. Second, turn that same trick into a measuring tool: once conservation is confirmed, dropping the known mass onto the circle and the pentagon lets you calculate their unknown moments of inertia from the speed change alone.
 
@@ -60,7 +60,24 @@ $$
 
 Average $\omega$ over a window of steady frames and use the standard error, exactly as in [[Lab 1 Error Analysis and Orientation]].
 
-**Unwrapping the angle.** One catch: $\operatorname{atan2}$ only returns angles between $-\pi$ and $\pi$. Once per revolution the rotating vector crosses that boundary, and the reported angle snaps from one end of the range to the other, a fake jump of about $2\pi$ that has nothing to do with the physics. Left alone, it puts one absurd spike in your $\omega$ column every turn. The fix is applied to the *differences*: a real between-frame change is always small, so any difference larger than $\pi$ in magnitude is a wrap, and adding or subtracting $2\pi$ brings it back to the true value. After that correction, every difference is physical and the spikes vanish.
+**Unwrapping the angle.** The function $\operatorname{atan2}$ only returns angles between $-\pi$ and $\pi$. Once per revolution the rotating vector crosses that boundary, and the reported angle snaps from one end of the range to the other, a fake jump of about $2\pi$ that has nothing to do with the physics. Left alone, it puts one absurd spike in your $\omega$ column every turn. The fix is applied to the *differences*: a real between-frame change is always small, so any difference larger than $\pi$ in magnitude is a wrap, and adding or subtracting $2\pi$ brings it back to the true value. After that correction, every difference is physical and the spikes vanish.
+
+> [!info] Theory in practice
+> With peg coordinates in D and E and shape sticker coordinates in B and C, the angle per frame is:
+>
+> ```
+> =ATAN2(B2-D2, C2-E2)
+> ```
+>
+> Careful: Excel and Google Sheets both take the **x argument first** in `ATAN2`, the reverse of most textbooks and programming languages. With angles in column F and the frame time step in cell H1, the wrap-corrected angular velocity is:
+>
+> ```
+> =(F3-F2 + IF(F3-F2<-PI(), 2*PI(), IF(F3-F2>PI(), -2*PI(), 0))) / $H$1
+> ```
+>
+> Drag it down, average a steady window, and keep everything in rad/s.
+> 
+> **What is `ATAN2`?** It is the two-argument arctangent: given a point's coordinates, it returns the angle of that point measured from the positive x axis. The ordinary `ATAN(y/x)` cannot do this job, because dividing throws away the signs: the points $(1, 1)$ and $(-1, -1)$ give the same ratio but sit in opposite quadrants, so `ATAN` answers within a half circle and gets the other half wrong. By taking $y$ and $x$ separately, `ATAN2` sees both signs, places the angle in the correct quadrant, and covers the full circle (it even handles the straight-up case where $x = 0$ would crash a division). Its answers run from $-\pi$ to $\pi$, which is exactly why the unwrap correction exists: once per revolution the angle snaps across that boundary, and the `IF` fix repairs it.
 
 > [!question]- Why the swept angle beats velocity over radius
 > Everything in this callout is worth knowing but **not required** by the manual or the instruction slides.
@@ -95,24 +112,7 @@ $$
 
 Every quantity on the right side is measured or given, and their uncertainties propagate through with the same quadrature rules as always: the subtraction in the denominator first, then the division.
 
-**Finding a center of mass.** For a flat shape, hang it freely from any point and drop a plumb line from that same point; the center of mass lies somewhere on that vertical line. Hang the shape from a second point and repeat: the two lines cross at the center of mass. A quick balance check on a fingertip confirms it. This is deliverable 1, and it earns its keep because $d$ in the parallel axis theorem is measured from the center of mass.
-
-> [!info] Theory in practice
-> With peg coordinates in D and E and shape sticker coordinates in B and C, the angle per frame is:
->
-> ```
-> =ATAN2(B2-D2, C2-E2)
-> ```
->
-> Careful: Excel and Google Sheets both take the **x argument first** in `ATAN2`, the reverse of most textbooks and programming languages. With angles in column F and the frame time step in cell H1, the wrap-corrected angular velocity is:
->
-> ```
-> =(F3-F2 + IF(F3-F2<-PI(), 2*PI(), IF(F3-F2>PI(), -2*PI(), 0))) / $H$1
-> ```
->
-> Drag it down, average a steady window, and keep everything in rad/s.
-> 
-> **What is `ATAN2`?** It is the two-argument arctangent: given a point's coordinates, it returns the angle of that point measured from the positive x axis. The ordinary `ATAN(y/x)` cannot do this job, because dividing throws away the signs: the points $(1, 1)$ and $(-1, -1)$ give the same ratio but sit in opposite quadrants, so `ATAN` answers within a half circle and gets the other half wrong. By taking $y$ and $x$ separately, `ATAN2` sees both signs, places the angle in the correct quadrant, and covers the full circle (it even handles the straight-up case where $x = 0$ would crash a division). Its answers run from $-\pi$ to $\pi$, which is exactly why the unwrap correction exists: once per revolution the angle snaps across that boundary, and the `IF` fix repairs it.
+**Finding a center of mass.** For a flat shape, turn on the air table and let the shape spin freely. A drill hole that does not rotate is the shape center of mass. A quick balance check on a fingertip confirms it. This is deliverable 1, and it earns its keep because $d$ in the parallel axis theorem is measured from the center of mass.
 
 ### Know before you walk in
 
@@ -120,7 +120,8 @@ Every quantity on the right side is measured or given, and their uncertainties p
 - The sticker works best near the **rim** of the shape: a larger radius means faster sticker motion and a cleaner $\omega$ from the same tracking noise.
 - The 20 g mass gets a sticker too. Its angular momentum is on the required plot, and the radius of the circle it traces after landing _is_ your $d$ for the parallel axis theorem.
 - Plan your recording windows: you need steady spin before the drop and stable rotation after it, with the drop in the middle of one continuous recording.
-- The bearing is not frictionless, so the spin decays slowly on its own. Your before and after windows should hug the drop moment, not sprawl across the whole recording.
+- The bearing is not frictionless.
+- Minimize torque on the rotating mass when you drop the mass. Drop it straight down, not from an angle.
 
 ---
 
@@ -175,7 +176,6 @@ Stop each recording with ⌃ Ctrl + C once the rotation has stabilized after the
 ### Before you leave the lab
 
 - [ ] L shape conservation run recorded: steady spin, clean drop, stable rotation after, both stickers tracked throughout
-- [ ] Several drop trials recorded for the **circle** and for the **pentagon**
 - [ ] Sticker radii known or extractable from the data, including the landing radius $d$ of the 20 g mass in every trial
 - [ ] Center of mass procedure carried out and noted; deliverable 1 asks you to describe it
 - [ ] Trial log matches your data files one to one
@@ -195,16 +195,9 @@ Stop each recording with ⌃ Ctrl + C once the rotation has stabilized after the
 4. **The conservation discussion (15%).** Compare the total just before and just after the drop, within uncertainty. The slow downhill drift on both sides is bearing friction, a real external torque; the test of conservation is the absence of a sudden jump at the drop, not a perfectly flat line.
 5. **The unknown moment procedure (15%) and values (10%).** The elegant part: conservation, verified in assignment 1, becomes the measuring instrument for assignment 2. Present the solved equation, then the circle and pentagon results with propagated uncertainties.
 
-> [!question]- Deja vu: this is Lab 4 again, rotated 
-> Everything in this callout is worth knowing but **not required** by the manual or the instruction slides.
-> 
-> Dropping the mass onto the spinning shape is a perfectly inelastic collision, just in rotation: two objects meet, grip, and move on together. Friction between the mass and the shape is an _internal_ force of the pair, so it can transfer angular momentum between them but cannot change the total, exactly like the puck contact forces in [[Lab 4 Collisions]].
-> 
-> And just like Lab 4, kinetic energy does not survive. The gripping friction converts some rotational kinetic energy to heat, so $\frac{1}{2}I\omega^2$ after the drop comes out lower than before. If you check this in your data, you will find energy missing while angular momentum balances, and that pairing is the signature of an inelastic capture, not an error.
-
 ### Analysis checklist
 
-- Extract $\omega(t)$ for the shape and, after the drop, for the mass, using $v/r$ per frame
+- Extract $\omega(t)$ for the shape and after the drop.
 - Measure each sticker's radius and the mass's landing distance $d$ from the traced circles in the data
 - Apply the parallel axis theorem to the 20 g mass; use the given center of mass values with their stated uncertainties
 - Compute $L(t)$ for shape, mass, and total; build the plot across the drop with the same style as the manual's example
